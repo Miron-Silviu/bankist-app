@@ -159,6 +159,8 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
+// Create Current Date and Time
+
 const now = new Date();
 const day = `${now.getDate()}`.padStart(2, 0);
 const month = `${now.getMonth() + 1}`.padStart(2, 0);
@@ -212,6 +214,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
+    // Add Transfer Date
+    currentAccount.movementsDates.push(new Date());
+    receiverAcc.movementsDates.push(new Date());
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -225,6 +231,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
+
+    // Add Loan Date
+    currentAccount.movementsDates.push(new Date());
 
     // Update UI
     updateUI(currentAccount);
